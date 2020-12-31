@@ -1,0 +1,42 @@
+body {
+    width: 100%;
+    background: #FFE4B5;
+}
+
+h1.title {
+    width: 250px;
+    height: 100px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "arial black";
+    font-size: 50px;
+}
+
+hr {
+    width: 80%;
+    border-top: 2px dotted #000;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+ul.menubar {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+li.menubar {
+    flex-grow: 1px;
+    list-style-type: none;
+    text-align: center;
+}
+
+button {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius:30px;
+    padding: 10px 40px 10px 40px;
+}
