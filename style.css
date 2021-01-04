@@ -4,6 +4,8 @@ body {
 }
 
 .center {
+    width: auto;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
