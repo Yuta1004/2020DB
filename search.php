@@ -15,7 +15,8 @@ if($genre && $target && $keyword) {
     }
 
     // Get results
-    $sql = "select * from $genre where $target like '%$keyword%';";
+    $is_operator = $_SESSION["studyq_is_operator"];
+    $sql = "select * from $genre where $target like '%$keyword%' and (visible=1 or $is_operator=1);";
     $results = getDBHandler()->query($sql)->fetchAll();
 } else {
     $genre = "Questions";

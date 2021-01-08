@@ -5,7 +5,7 @@ require "util_func.php";
 requireLogin();
 unset($_SESSION["studyq_userid"]);
 unset($_SESSION["studyq_nickname"]);
-unset($_SESSION["studyq_is_operator"]);
+$_SESSION["studyq_is_operator"] = 0;
 ?>
 
 <!DOCTYPE html>

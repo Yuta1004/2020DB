@@ -11,8 +11,9 @@ if(!$page || $page < 1) {
 }
 
 // Get all questions
+$is_operator = $_SESSION["studyq_is_operator"];
 $offset = ($page-1) * 10;
-$sql = "select * from Questions order by date desc limit 10 offset $offset;";
+$sql = "select * from Questions where visible=1 or $is_operator=1 order by date desc limit 10 offset $offset;";
 $questions = getDBHandler()->query($sql)->fetchAll();
 
 // Redirect
