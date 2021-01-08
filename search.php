@@ -54,7 +54,7 @@ if($genre && $target && $keyword) {
             $idx = 1;
             foreach($results as $result) {
                 $question_id = $result["question_id"];
-                $title = $result["title"];
+                $title = $result["title"] == "" ? "この投稿を見る" : $result["title"];
                 $nickname = $result["nickname"];
                 $date = $result["date"];
                 $body = adjustmentStr($result["body"], 80);
