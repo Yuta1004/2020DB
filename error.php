@@ -1,15 +1,16 @@
 <?php
+// Message List
+$msg_array = array(
+    "未定義のエラーが発生しました",
+    "全ての項目を入力してください"
+);
+
 // Check
 $errno = $_GET["errno"];
-if(!$errno || $errno < 0 || 0 < $errno) {
+if(!$errno || $errno < 0 || count($msg_array) < $errno) {
     $errno = 0;
 }
 $errno += 0.0;
-
-// Message List
-$msg_array = array(
-    "未定義のエラーが発生しました"
-);
 ?>
 
 <!DOCTYPE html>
