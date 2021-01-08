@@ -16,11 +16,9 @@ if($_POST["change"]) {
 
     // Update user info
     try {
-        $old_userid = $_SESSION["studyq_userid"];
         $hashed_pw = crypt($pw, "1204chino4021");
-        $sql = "update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$old_userid\";";
+        $sql = "update Users set nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$userid\";";
         getDBHandler()->query($sql);
-        $_SESSION["studyq_userid"] = $userid;
         $_SESSION["studyq_nickname"] = $nickname;
     } catch (PDOException $e) {
         error(7);
@@ -42,11 +40,12 @@ if($_POST["change"]) {
     <h2 class="minititle">ユーザ情報</h2>
     <form class="center" style="width: 400px;" method="POST", action="#">
         <div style="text-align: left;">
-            <p><b>ユーザID</b>:          <input type="text" name="userid" value=<?php echo $_SESSION["studyq_userid"]; ?>></p>
+            <p><b>ユーザID</b>: <?php echo $_SESSION["studyq_userid"]; ?></p>
             <p><b>ニックネーム</b>:       <input type="text" name="nickname" value=<?php echo $_SESSION["studyq_nickname"]; ?>></p>
             <p><b>パスワード</b>:         <input type="password" name="password"></p>
             <p><b>パスワード(確認用)</b>:  <input type="password" name="password_conf"></p>
         </div>
+        <input type="hidden" name="userid" value=<?php echo $_SESSION["studyq_userid"]?>>
         <input type="submit" name="change" value="変更">
     </form>
 </body>
