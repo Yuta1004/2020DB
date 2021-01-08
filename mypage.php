@@ -20,6 +20,14 @@ $query_a_list = "search.php?genre=Answers&target=user_id&keyword=$userid";
 <body>
     <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">マイページ</h2><br><br>
+    <?php
+        if($_SESSION["studyq_is_operator"]) {
+            echo "<hr style='margin-top: 0px;'>";
+            echo "<h3 class='center' style='color: #FF0000;'><u>あなたはシステム管理者です</u></p>";
+            echo "<button type='button' onclick='javascript:window.location=\"allview.php\";return false;'>投稿の管理を行う</button><br><br><br>";
+            echo "<hr style='margin-top: 0px;'>";
+        }
+    ?>
     <div class="center">
         <button type="button" onclick="javascript:window.location='<?php echo $query_q_list; ?>';return false;">自身の投稿一覧</button><br><br><br>
         <button type="button" onclick="javascript:window.location='<?php echo $query_a_list; ?>';return false;">自身の回答一覧</button><br><br><br>
