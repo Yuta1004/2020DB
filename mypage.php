@@ -18,6 +18,7 @@ requireLogin();
         <button type="button">投稿一覧</button><br><br><br>
         <button type="button">回答一覧</button><br><br><br>
         <button type="button">ユーザ情報確認・変更</button><br><br><br>
+        <button type="button" onclick="javascript:window.location='logout.php';return false;">ログアウト</button><br><br><br>
     </div>
 </body>
 
