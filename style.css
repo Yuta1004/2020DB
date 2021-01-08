@@ -89,3 +89,11 @@ div.listelement {
     padding: 10px 30px 10px 30px;
     text-align: left;
 }
+
+pre {
+    white-space: pre-wrap;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
