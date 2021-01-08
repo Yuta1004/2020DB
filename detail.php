@@ -1,14 +1,7 @@
 <?php
 // Useinfo
-$c_userid = $_COOKIE["studyq_userid"];
-$c_nickname = $_COOKIE["studyq_nickname"];
-if($c_userid && $c_nickname) {
-    $mylink = "mypage.php";
-    $hdmsg = "$c_nickname さんのマイページへ";
-} else {
-    $mylink = "login.php";
-    $hdmsg = "ログイン";
-}
+require "util_func.php";
+list($mylink, $hdmsg) = getUserMsg();
 ?>
 
 <!DOCTYPE html>
