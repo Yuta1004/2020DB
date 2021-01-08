@@ -6,11 +6,19 @@ list($mylink, $hdmsg) = getUserMsg();
 
 // Exists check
 if(!$_GET["id"]) error(8);
-$question_id = $_GET["id"];
 $dbh = getDBHandler();
-if(!$dbh->query("select * from Questions where question_id=\"$question_id\";")->fetch()) {
-    error(8);
-}
+$question_id = $_GET["id"];
+$sql = "select * from Questions as Q inner join Users as U on Q.user_id=U.user_id where question_id=\"$question_id\";";
+$question_info = $dbh->query($sql)->fetch();
+if(!$question_info) error(8);
+
+// Get question info
+$nickname = $question_info["nickname"];
+$title = $question_info["title"];
+$body = $question_info["body"];
+$tweet = $question_info["tweet"];
+$date = $question_info["date"];
+$help = 0;
 ?>
 
 <!DOCTYPE html>
@@ -29,15 +37,12 @@ if(!$dbh->query("select * from Questions where question_id=\"$question_id\";")->
     <h2 class="minititle">投稿詳細</h2>
     <div class="center" style="width: 60%; text-align: left;">
         <div class="listelement">
-            <p><b>投稿者名</b>: あああああ</p>
-            <p><b>投稿日時</b>: 1970/01/01 00:00:00</p>
-            <p><b>問題</b></p>
-            <div>
-                あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ…
-            </div><br>
-            <p><b>ひとこと</b>: あああああああああああああああああああああ</p>
+            <p><b>投稿者名</b>: <?php echo $nickname; ?></p>
+            <p><b>投稿日時</b>: <?php echo $date; ?></p>
+            <p><b>問題</b></p> <pre style="font-size: 20px;"><?php echo $body; ?></pre><br>
+            <p><b>ひとこと</b>: <?php echo $tweet; ?></p>
             <p>
-                <b>HELP!</b>: <i>9999</i>
+                <b>HELP!</b>: <i><?php echo $help; ?></i>
                 <button type="button" style="font-size: 10px; padding: 5px 10px 5px 10px;">HELP!する</button>
             </p>
         </div>
