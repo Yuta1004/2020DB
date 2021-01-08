@@ -17,6 +17,9 @@ if($genre && $target && $keyword) {
     // Get results
     $sql = "select * from $genre where $target like '%$keyword%';";
     $results = getDBHandler()->query($sql)->fetchAll();
+} else {
+    $genre = "Questions";
+    $target = "body";
 }
 ?>
 
