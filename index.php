@@ -18,7 +18,7 @@ list($mylink, $hdmsg) = getUserMsg();
     <header>
         <h3 style="text-align: right;"><a href=<?php echo $mylink; ?>><i><?php echo $hdmsg; ?></i></a></h3>
     </header>
-    <h1 class="title" onclick="javascript:window.location='index.php';return false;"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <ul class="menubar" style="padding-left: 40px;">
         <li class="menubar"><button type="button">投稿</button></li>
         <li class="menubar"><button type="button">検索</button></li>

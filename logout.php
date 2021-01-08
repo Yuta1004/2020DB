@@ -16,11 +16,11 @@ unset($_SESSION["studyq_nickname"]);
 </head>
 
 <body>
-    <h1 class="title" onclick="javascript:window.location='index.php';return false;"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">ログアウト</h2>
     <p class="center">正常にログアウトが完了しました</p>
     <div class="center">
-        <button style="font-size: 15px;" onclick="javascript:window.location='index.php';return false;">トップページへ</button>
+        <button style="font-size: 15px;" onclick="javascript:window.location='/';return false;">トップページへ</button>
     </div>
 </body>
 

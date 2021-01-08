@@ -14,7 +14,7 @@ requireLogin();
 </head>
 
 <body>
-    <h1 class="title" onclick="javascript:window.location='index.php';return false;"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">ユーザ情報</h2>
     <form class="center" style="width: 400px;">
         <div style="text-align: left;">

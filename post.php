@@ -20,7 +20,7 @@ list($mylink, $hdmsg) = getUserMsg();
     <header>
         <h3 style="text-align: right;"><a href=<?php echo $mylink; ?>><i><?php echo $hdmsg; ?></i></a></h3>
     </header>
-    <h1 class="title" onclick="javascript:window.location='index.php';return false;"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">投稿</h2>
     <form class="center" style="width: 45%;">
         <div style="text-align: left;">
