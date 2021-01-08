@@ -1,3 +1,20 @@
+<?php
+$userid = $_POST["userid"];
+$nickname = $_POST["nickname"];
+$pw = $_POST["password"];
+$pw_conf = $_POST["password_conf"];
+
+// Check
+if(!($userid && $nickname && $pw && $pw_conf)) {
+    header("Location: error.php?errno=1", true, 301);
+    exit();
+}
+if($pw != $pw_conf) {
+    header("Location: error.php?errno=2", true, 301);
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -12,8 +29,8 @@
     <form class="center" style="width: 400px;" method="POST" action="#">
         <p>以下の内容で登録してよろしいですか?</p>
         <div class="center" style="text-align: left; width: 200px;">
-            <p><b>ユーザID</b>: <?php echo $_POST["userid"]; ?></p>
-            <p><b>ニックネーム</b>: <?php echo $_POST["nickname"]; ?></p>
+            <p><b>ユーザID</b>: <?php echo $userid ?></p>
+            <p><b>ニックネーム</b>: <?php echo $nickname ?></p>
             <p><b>パスワード</b>: *******</p>
         </div>
         <input type="hidden" name="userid" ></p>
