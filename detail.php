@@ -18,11 +18,14 @@ $title = $question_info["title"];
 $body = $question_info["body"];
 $tweet = $question_info["tweet"];
 $date = $question_info["date"];
-$help = 0;
 
 // Get answers
 $sql = "select * from Answers as A inner join Users as U on A.user_id=U.user_id where question_id=\"$question_id\" order by date asc;";
 $answers = $dbh->query($sql)->fetchAll();
+
+// Get valuations
+$sql = "select count(*) as count from Valuations where question_id=\"$question_id\";";
+$help = $dbh->query($sql)->fetch()["count"];
 ?>
 
 <!DOCTYPE html>
