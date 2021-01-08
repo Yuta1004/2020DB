@@ -18,7 +18,8 @@ if($_POST["post"]) {
     try {
         $date = date("Y/m/d H:i:s");
         $userid = $_SESSION["studyq_userid"];
-        $result = getDBHandler()->query("insert into Questions (user_id, title, body, tweet, date) values (\"$userid\", \"$title\", \"$body\", \"$tweet\", \"$date\");");
+        $sql = "insert into Questions (user_id, title, body, tweet, date) values (\"$userid\", \"$title\", \"$body\", \"$tweet\", \"$date\");";
+        $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
         error(0);
     }

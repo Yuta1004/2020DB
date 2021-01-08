@@ -18,7 +18,8 @@ if($_POST["change"]) {
     try {
         $old_userid = $_SESSION["studyq_userid"];
         $hashed_pw = crypt($pw, "1204chino4021");
-        getDBHandler()->query("update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$old_userid\";");
+        $sql = "update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$old_userid\";";
+        getDBHandler()->query($sql);
         $_SESSION["studyq_userid"] = $userid;
         $_SESSION["studyq_nickname"] = $nickname;
     } catch (PDOException $e) {

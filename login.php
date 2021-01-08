@@ -13,7 +13,8 @@ if($_POST["login"]) {
     if(!($userid && $pw)) error(1);
 
     // User valid process
-    $userinfo = getDBHandler()->query("select nickname, hashed_pw from Users where user_id=\"$userid\";")->fetch();
+    $sql = "select nickname, hashed_pw from Users where user_id=\"$userid\";";
+    $userinfo = getDBHandler()->query($sql)->fetch();
     if(!$userinfo || $userinfo["hashed_pw"] != crypt($pw, "1204chino4021")) {
         error(4);
     }
