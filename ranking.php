@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Useinfo
 require "util_func.php";
 list($mylink, $hdmsg) = getUserMsg();
 ?>

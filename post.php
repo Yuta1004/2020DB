@@ -4,7 +4,6 @@ session_start();
 require "util_func.php";
 requireLogin();
 
-// Useinfo
 list($mylink, $hdmsg) = getUserMsg();
 ?>
 
