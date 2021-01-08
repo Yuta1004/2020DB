@@ -32,6 +32,8 @@ if($_POST["regist"]) {
     } catch (PDOException $e) {
         error(3);
     }
+    $_SESSION["studyq_userid"] = $userid;
+    $_SESSION["studyq_nickname"] = $nickname;
     message("ユーザ登録が正常に完了しました");
 }
 ?>
