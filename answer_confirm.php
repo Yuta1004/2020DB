@@ -14,7 +14,7 @@ if(!($question_id && $body)) error(1);
 // Post answer
 if($_POST["post"]) {
     try {
-        $date = date("Y/m/d H:i:s");
+        $date = date("Y/m/d H:i:s", strtotime("+9hours"));
         $userid = $_SESSION["studyq_userid"];
         $sql = "insert into Answers values (\"$question_id\", \"$userid\", \"$body\", \"$date\");";
         $result = getDBHandler()->query($sql);

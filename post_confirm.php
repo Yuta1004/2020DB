@@ -16,7 +16,7 @@ if(!($title && $body)) error(1);
 // Post question
 if($_POST["post"]) {
     try {
-        $date = date("Y/m/d H:i:s");
+        $date = date("Y/m/d H:i:s", strtotime("+9hours"));
         $userid = $_SESSION["studyq_userid"];
         $sql = "insert into Questions (user_id, title, body, tweet, date) values (\"$userid\", \"$title\", \"$body\", \"$tweet\", \"$date\");";
         $result = getDBHandler()->query($sql);
