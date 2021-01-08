@@ -3,6 +3,14 @@ session_start();
 
 require "util_func.php";
 list($mylink, $hdmsg) = getUserMsg();
+
+// Exists check
+if(!$_GET["id"]) error(8);
+$question_id = $_GET["id"];
+$dbh = getDBHandler();
+if(!$dbh->query("select * from Questions where question_id=\"$question_id\";")->fetch()) {
+    error(8);
+}
 ?>
 
 <!DOCTYPE html>
