@@ -1,4 +1,6 @@
 <?php
+start_session();
+
 require "util_func.php";
 requireLogin();
 ?>

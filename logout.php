@@ -1,8 +1,10 @@
 <?php
+session_start();
+
 require "util_func.php";
 requireLogin();
-setcookie("studyq_userid", $userid, 1);     // (´・ω・｀)
-setcookie("studyq_nickname", $userinfo["nickname"], 1);
+unset($_SESSION["studyq_userid"]);
+unset($_SESSION["studyq_nickname"]);
 ?>
 
 <!DOCTYPE html>

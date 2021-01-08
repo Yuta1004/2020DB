@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "util_func.php";
 requireNotLogin();
 
@@ -33,8 +35,8 @@ if($_POST["login"]) {
         header("Location: error.php?errno=4", true, 301);
         exit();
     }
-    setcookie("studyq_userid", $userid);     // (´・ω・｀)
-    setcookie("studyq_nickname", $userinfo["nickname"]);
+    $_SESSION["studyq_userid"] = $userid;
+    $_SESSION["studyq_nickname"] = $userinfo["nickname"];
     header("Location: /", true, 301);
 }
 ?>
