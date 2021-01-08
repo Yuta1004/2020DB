@@ -8,7 +8,7 @@
 
 <body>
     <h1 class="title"><u>Study Q</u></h1>
-    <p class="center">メッセージ</p>
+    <p class="center"><? echo $_GET["msg"]; ?></p>
     <div class="center">
         <button style="font-size: 15px;" onclick="javascript:window.location='index.html';return false;">トップページへ</button>
     </div>
