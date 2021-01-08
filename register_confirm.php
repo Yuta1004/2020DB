@@ -19,7 +19,7 @@ if($_POST["regist"]) {
     // Crypt -> Insert to DB
     $hashed_pw = crypt($pw, "1204chino4021");
     try {
-        $sql = "insert into Users values(\"$userid\", \"$nickname\", \"$hashed_pw\");";
+        $sql = "insert into Users values(\"$userid\", \"$nickname\", \"$hashed_pw\", 0);";
         $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
         error(3);
