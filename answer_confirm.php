@@ -45,7 +45,7 @@ if($_POST["post"]) {
             <p><b>回答</b></p>  <pre style="font-size: 15px;"><?php echo $body; ?></pre><br>
         </div>
         <input type="hidden" name="question_id" value=<?php echo $question_id; ?>>
-        <input type="hidden" name="body" value=<?php echo $body; ?>>
+        <textarea style="display: none;" name="body"><?php echo $body; ?></textarea>
         <input type="submit" name="post" value="投稿">
     </form>
 </body>

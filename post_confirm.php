@@ -49,7 +49,7 @@ if($_POST["post"]) {
             <p><b>ひとこと</b>:  <?php echo $tweet; ?></p>
         </div>
         <input type="hidden" name="title" value=<?php echo $title; ?>>
-        <input type="hidden" name="body" value=<?php echo $body; ?>>
+        <textarea style="display: none;" name="body"><?php echo $body; ?></textarea>
         <input type="hidden" name="tweet" value=<?php echo $tweet; ?>>
         <input type="submit" name="post" value="投稿">
     </form>
