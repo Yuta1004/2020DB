@@ -57,6 +57,7 @@ if($_POST["login"]) {
         </div>
         <input type="submit" name="login" value="ログイン">
     </form>
+    <p class="center"><a href="register.php">ユーザ登録がまだの方はこちらへ</a></p>
 </body>
 
 </html>
