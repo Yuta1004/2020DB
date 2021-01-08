@@ -1,4 +1,15 @@
 <?php
+// Check
+$errno = $_GET["errno"];
+if(!$errno || $errno < 0 || 0 < $errno) {
+    $errno = 0;
+}
+$errno += 0.0;
+
+// Message List
+$msg_array = array(
+    "未定義のエラーが発生しました"
+);
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +23,7 @@
 <body>
     <h1 class="title"><u>Study Q</u></h1>
     <h2 class="minititle">エラー発生</h2>
-    <p class="center">〇〇が□□なエラーが発生しました</p>
+    <p class="center"><?php echo "$msg_array[$errno]"; ?></p>
     <div class="center">
         <button style="font-size: 15px;" onclick="javascript:window.history.back(-1);return false;">もどる</button>
     </div>

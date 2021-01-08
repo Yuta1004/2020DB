@@ -1,3 +1,34 @@
+<?php
+// Check
+if(!($_POST["userid"] && $_POST["nickname"] && $_POST["password"] && $_POST["password_conf"])) {
+    goto __exit;
+}
+$userid = $_POST["userid"];
+$nicnkame = $_POST["nickname"];
+$password = $_POST["password"];
+$password_conf = $_POST["password_conf"];
+if($password != $password_conf) {
+    goto __exit;
+}
+
+// Define MySQL Connection Info
+define("DB_DATABASE", "db2020");
+define("DB_USERNAME", "db2020");
+define("DB_PASSWORD", "db2020");
+define("PDO_DSN", "mysql:dbhost=localhost;dbname=db2020;unix_socket=/tmp/mysql.sock");
+
+// Create MySQL Connection
+try {
+    $dbh = new PDO(PDO_DSN, DB_USERNAME, DB_PASSWORD);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh->query("set names utf8");
+} catch (PDOException $e) {
+    echo $e->getMessage();
+    exit();
+}
+
+__exit:?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
