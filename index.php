@@ -20,9 +20,9 @@ list($mylink, $hdmsg) = getUserMsg();
     </header>
     <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <ul class="menubar" style="padding-left: 40px;">
-        <li class="menubar"><button type="button">投稿</button></li>
-        <li class="menubar"><button type="button">検索</button></li>
-        <li class="menubar"><button type="button">ランキング</button></li>
+        <li class="menubar"><button type="button" onclick="javascript:window.location='post.php';return false;">投稿</button></li>
+        <li class="menubar"><button type="button" onclick="javascript:window.location='search.php';return false;">検索</button></li>
+        <li class="menubar"><button type="button" onclick="javascript:window.location='ranking.php';return false;">ランキング</button></li>
     </ul>
     <hr>
     <ul class="menubar">
