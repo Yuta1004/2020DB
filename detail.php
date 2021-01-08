@@ -13,6 +13,7 @@ $question_info = $dbh->query($sql)->fetch();
 if(!$question_info) error(8);
 
 // Get question info
+$user_id = $question_info["user_id"];
 $nickname = $question_info["nickname"];
 $title = $question_info["title"];
 $body = $question_info["body"];
@@ -55,6 +56,11 @@ $help = $dbh->query($sql)->fetch()["count"];
                     <input type="submit" value="HELP!する">
                 </form>
             </p>
+            <?php
+                if($_SESSION["studyq_is_operator"]) {
+                    echo "<p><a href='setvisible_confirm.php?genre=Questions&question_id=$question_id&user_id=$user_id'>投稿管理を行う</a></p>";
+                }
+            ?>
         </div>
     </div>
     <hr>
@@ -63,6 +69,7 @@ $help = $dbh->query($sql)->fetch()["count"];
         <?php
             $idx = 1;
             foreach($answers as $answer) {
+                $user_id = $answer["user_id"];
                 $nickname = $answer["nickname"];
                 $date = $answer["date"];
                 $body = $answer["body"];
@@ -71,6 +78,9 @@ $help = $dbh->query($sql)->fetch()["count"];
                 echo "回答者名: $nickname<br>\n";
                 echo "回答日時: $date<br><br>\n";
                 echo "<u>回答内容</u><br> <pre style='font-size:15px;'>$body</pre>\n";
+                if($_SESSION["studyq_is_operator"]) {
+                    echo "<p><a href='setvisible_confirm.php?genre=Answers&question_id=$question_id&user_id=$user_id'>投稿管理を行う</a></p>";
+                }
                 echo "</div>\n";
                 ++ $idx;
             }
