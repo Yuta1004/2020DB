@@ -59,11 +59,12 @@ $help = 0;
         </div>
     </div>
     <hr>
-    <form class="center" style="width: 45%;">
+    <form class="center" style="width: 45%;" method="POST" action="answer_confirm.php">
         <div style="text-align: left;">
             <p><b>回答</b></p>
-            <textarea rows="10" cols="90%"></textarea>
+            <textarea rows="10" cols="90%" name="body"></textarea>
         </div>
+        <input type="hidden" name="question_id" value=<?php echo $question_id; ?>>
         <input type="submit" value="投稿">
     </form>
 </body>
