@@ -45,7 +45,7 @@ if($_POST["post"]) {
     <form class="center" style="width: 45%;" method="POST" action="#">
         <div style="text-align: left;">
             <p><b>タイトル</b>:  <?php echo $title; ?></p>
-            <p><b>問題</b></p>  <pre><?php echo $body; ?></pre><br>
+            <p><b>問題</b></p>  <pre style="font-size: 20px;"><?php echo $body; ?></pre><br>
             <p><b>ひとこと</b>:  <?php echo $tweet; ?></p>
         </div>
         <input type="hidden" name="title" value=<?php echo $title; ?>>
