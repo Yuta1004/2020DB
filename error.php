@@ -24,7 +24,7 @@ $errno += 0.0;
 </head>
 
 <body>
-    <h1 class="title"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='index.html';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">エラー発生</h2>
     <p class="center"><?php echo "$msg_array[$errno]"; ?></p>
     <div class="center">
