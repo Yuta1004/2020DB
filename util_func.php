@@ -41,4 +41,11 @@ function message($msg) {
     header("Location: message.php?msg=$msg", true, 301);
     exit();
 }
+
+function adjustmentStr($msg, $n) {
+    if(strlen($msg) > $n) {
+        return mb_substr($msg, 0, $n) . "...";
+    }
+    return $msg;
+}
 ?>

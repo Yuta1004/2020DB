@@ -56,7 +56,7 @@ if($genre && $target && $keyword) {
                 $title = $result["title"];
                 $nickname = $result["nickname"];
                 $date = $result["date"];
-                $body = $result["body"];
+                $body = adjustmentStr($result["body"], 80);
                 $count = $result["count"];
                 echo "<div class='listelement' style='width:85%; margin-left: auto; margin-right: auto;'>\n";
                 echo "<b>No.$idx</b><br>\n";
