@@ -1,3 +1,8 @@
+<?php
+require "util_func.php";
+requireLogin();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 

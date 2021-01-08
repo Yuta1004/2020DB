@@ -1,4 +1,7 @@
 <?php
+require "util_func.php";
+requireNotLogin();
+
 // Check
 if(!($_POST["userid"] && $_POST["nickname"] && $_POST["password"] && $_POST["password_conf"])) {
     goto __exit;

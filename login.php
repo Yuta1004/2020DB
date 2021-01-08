@@ -1,4 +1,7 @@
 <?php
+require "util_func.php";
+requireNotLogin();
+
 $userid = htmlspecialchars($_POST["userid"]);
 $pw = $_POST["password"];
 
