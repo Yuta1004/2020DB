@@ -1,3 +1,16 @@
+<?php
+// Useinfo
+$c_userid = $_COOKIE["studyq_userid"];
+$c_nickname = $_COOKIE["studyq_nickname"];
+if($c_userid && $c_nickname) {
+    $mylink = "mypage.php";
+    $hdmsg = "$c_nickname さんのマイページへ";
+} else {
+    $mylink = "login.php";
+    $hdmsg = "ログイン";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -8,7 +21,7 @@
 
 <body>
     <header>
-        <h3 style="text-align: right;"><a href="mypage.html"><i>○○さんのマイページへ</i></a></h3>
+        <h3 style="text-align: right;"><a href=<?php echo $mylink; ?>><i><?php echo $hdmsg; ?></i></a></h3>
     </header>
     <h1 class="title" onclick="javascript:window.location='index.html';return false;"><u>Study Q</u></h1>
     <ul class="menubar" style="padding-left: 40px;">
