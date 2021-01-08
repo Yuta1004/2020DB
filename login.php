@@ -10,10 +10,7 @@ $pw = $_POST["password"];
 // Login
 if($_POST["login"]) {
     // Check
-    if(!($userid && $pw)) {
-        header("Location: error.php?errno=1", true, 301);
-        exit();
-    }
+    if(!($userid && $pw)) error(1);
 
     // Create MySQL Connection
     try {
@@ -27,13 +24,8 @@ if($_POST["login"]) {
 
     // User valid process
     $userinfo = $dbh->query("select nickname, hashed_pw from Users where user_id=\"$userid\";")->fetch();
-    if(!$userinfo) {
-        header("Location: error.php?errno=4", true, 301);
-        exit();
-    }
-    if($userinfo["hashed_pw"] != crypt($pw, "1204chino4021")) {
-        header("Location: error.php?errno=4", true, 301);
-        exit();
+    if(!$userinfo || $userinfo["hashed_pw"] != crypt($pw, "1204chino4021")) {
+        error(4);
     }
     $_SESSION["studyq_userid"] = $userid;
     $_SESSION["studyq_nickname"] = $userinfo["nickname"];

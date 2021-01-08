@@ -12,16 +12,15 @@ function getUserMsg() {
 }
 
 function requireLogin() {
-    if(!$_SESSION["studyq_nickname"]) {
-        header("Location: error.php?errno=5", true, 301);
-        exit();
-    }
+    if(!$_SESSION["studyq_nickname"]) error(5);
 }
 
 function requireNotLogin() {
-    if($_SESSION["studyq_nickname"]) {
-        header("Location: error.php?errno=6", true, 301);
-        exit();
-    }
+    if($_SESSION["studyq_nickname"]) error(6);
+}
+
+function error($errno) {
+    header("Location: error.php?errno=$errno", true, 301);
+    exit();
 }
 ?>

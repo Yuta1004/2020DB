@@ -10,14 +10,8 @@ $pw = $_POST["password"];
 $pw_conf = $_POST["password_conf"];
 
 // Check
-if(!($userid && $nickname && $pw && $pw_conf)) {
-    header("Location: error.php?errno=1", true, 301);
-    exit();
-}
-if($pw != $pw_conf) {
-    header("Location: error.php?errno=2", true, 301);
-    exit();
-}
+if(!($userid && $nickname && $pw && $pw_conf)) error(1);
+if($pw != $pw_conf) error(2);
 
 // Regist user
 if($_POST["regist"]) {
@@ -36,8 +30,7 @@ if($_POST["regist"]) {
     try {
         $result = $dbh->query("insert into Users values(\"$userid\", \"$nickname\", \"$hashed_pw\");");
     } catch (PDOException $e) {
-        header("Location: error.php?errno=3", true, 301);
-        exit();
+        error(3);
     }
     header("Location: message.php?msg=登録が正常に完了しました");
 }
