@@ -1,6 +1,16 @@
+a {
+    color: #00F;
+    text-decoration: none;
+}
+
 body {
     width: 100%;
     background: #FFE4B5;
+}
+
+header {
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .center {
@@ -78,4 +88,12 @@ div.listelement {
     margin: 20px 10px 20px 10px;
     padding: 10px 30px 10px 30px;
     text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+textarea {
+    white-space: pre-wrap;
 }
