@@ -1,10 +1,10 @@
 <?php
 // Useinfo
-$userid = $_COOKIE["studyq_userid"];
-$nickname = $_COOKIE["studyq_nickname"];
-if($userid && $nickname) {
+$c_userid = $_COOKIE["studyq_userid"];
+$c_nickname = $_COOKIE["studyq_nickname"];
+if($c_userid && $c_nickname) {
     $mylink = "mypage.php";
-    $hdmsg = "$nickname さんのマイページへ";
+    $hdmsg = "$c_nickname さんのマイページへ";
 } else {
     $mylink = "login.php";
     $hdmsg = "ログイン";
