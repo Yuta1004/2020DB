@@ -28,13 +28,13 @@ if($_POST["change"]) {
     try {
         $old_userid = $_SESSION["studyq_userid"];
         $hashed_pw = crypt($pw, "1204chino4021");
-        $dbh->query("update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$pw\" where user_id=\"$old_userid\";");
+        $dbh->query("update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$old_userid\";");
         $_SESSION["studyq_userid"] = $userid;
         $_SESSION["studyq_nickname"] = $nickname;
     } catch (PDOException $e) {
         error(7);
     }
-    header("Location: message.php?msg=情報更新に成功しました", true, 301);
+    message("ユーザ情報が正常に更新されました", true, 301);
 }
 ?>
 

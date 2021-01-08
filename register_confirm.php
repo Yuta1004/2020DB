@@ -32,7 +32,7 @@ if($_POST["regist"]) {
     } catch (PDOException $e) {
         error(3);
     }
-    header("Location: message.php?msg=登録が正常に完了しました");
+    message("ユーザ登録が正常に完了しました");
 }
 ?>
 

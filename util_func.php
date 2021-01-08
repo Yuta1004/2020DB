@@ -23,4 +23,9 @@ function error($errno) {
     header("Location: error.php?errno=$errno", true, 301);
     exit();
 }
+
+function message($msg) {
+    header("Location: message.php?msg=$msg", true, 301);
+    exit();
+}
 ?>

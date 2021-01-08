@@ -29,7 +29,7 @@ if($_POST["login"]) {
     }
     $_SESSION["studyq_userid"] = $userid;
     $_SESSION["studyq_nickname"] = $userinfo["nickname"];
-    header("Location: /", true, 301);
+    message("ログインに成功しました");
 }
 ?>
 
