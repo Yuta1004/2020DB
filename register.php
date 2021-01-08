@@ -38,7 +38,7 @@ __exit:?>
 </head>
 
 <body>
-    <h1 class="title" onclick="javascript:window.location='index.html';return false;"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='index.php';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">ユーザ登録</h2>
     <form class="center" style="width: 400px;" method="POST" action="register_confirm.php">
         <div style="text-align: left;">

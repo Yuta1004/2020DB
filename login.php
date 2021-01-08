@@ -45,10 +45,7 @@ if($_POST["login"]) {
 </head>
 
 <body>
-    <header>
-        <h3 style="text-align: right;"><a href="mypage.html"><i>○○さんのマイページへ</i></a></h3>
-    </header>
-    <h1 class="title" onclick="javascript:window.location='index.html';return false;"><u>Study Q</u></h1>
+    <h1 class="title" onclick="javascript:window.location='index.php';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">ログイン</h2>
     <form class="center" style="width: 400px;" method="POST" action="#">
         <div style="text-align: left;">
