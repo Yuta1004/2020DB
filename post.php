@@ -22,14 +22,14 @@ list($mylink, $hdmsg) = getUserMsg();
     </header>
     <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">投稿</h2>
-    <form class="center" style="width: 45%;">
+    <form class="center" style="width: 45%;" method="POST" action="#">
         <div style="text-align: left;">
-            <p><b>タイトル</b>:           <input type="text" size="80%"></p>
+            <p><b>タイトル</b>:  <input type="text" size="80%" name="title"></p>
             <p><b>問題</b></p>
-            <textarea rows="10" cols="90%"></textarea>
-            <p><b>ひとこと</b>:           <input type="text" size="80%"></p>
+            <textarea rows="10" cols="90%" name="body"></textarea>
+            <p><b>ひとこと</b>:  <input type="text" size="80%" name="tweet"></p>
         </div>
-        <input type="submit" value="投稿">
+        <input type="submit" name="post" value="投稿">
     </form>
 </body>
 
