@@ -20,10 +20,12 @@ list($mylink, $hdmsg) = getUserMsg();
     <h1 class="title" onclick="javascript:window.location='/';return false;"><u>Study Q</u></h1>
     <h2 class="minititle">検索</h2>
     <hr>
-    <form class="center" style="width: 30%;">
-        <input type="radio" name="search_target">ユーザID
-        <input type="radio" name="search_target" checked>投稿本文<br>
-        <input type="text" size="40">
+    <form class="center" style="width: 30%;" method="GET" action="#">
+        <input type="radio" name="genre" value="question" checked>問題
+        <input type="radio" name="genre" value="answer" >回答<br>
+        <input type="radio" name="target" value="body" checked>投稿本文
+        <input type="radio" name="target" value="userid">ユーザID<br>
+        <input type="text" name="keyword" size="40">
         <input type="submit" value="検索">
     </form>
     <hr>
