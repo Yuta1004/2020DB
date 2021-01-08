@@ -47,7 +47,10 @@ $answers = $dbh->query($sql)->fetchAll();
             <p><b>ひとこと</b>: <?php echo $tweet; ?></p>
             <p>
                 <b>HELP!</b>: <i><?php echo $help; ?></i>
-                <button type="button" style="font-size: 10px; padding: 5px 10px 5px 10px;">HELP!する</button>
+                <form style="width: 0px; border: 0px; margin: 0px;" method="POST" action="valuation_confirm.php">
+                    <input type="hidden" name="question_id" value=<?php echo $question_id; ?>>
+                    <input type="submit" value="HELP!する">
+                </form>
             </p>
         </div>
     </div>
