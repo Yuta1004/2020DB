@@ -8,10 +8,11 @@ list($mylink, $hdmsg) = getUserMsg();
 if(!$_GET["id"]) error(8);
 $dbh = getDBHandler();
 $question_id = $_GET["id"];
-$sql = "select * from Questions as Q inner join Users as U on Q.user_id=U.user_id where question_id=\"$question_id\";";
+$is_operator = $_SESSION["studyq_is_operator"];
+$sql = "select * from Questions as Q inner join Users as U on Q.user_id=U.user_id where question_id=\"$question_id\" and (Q.visible=1 or $is_operator=1);";
 $question_info = $dbh->query($sql)->fetch();
 if(!$question_info) error(8);
-if(!$question_info["visible"]) error(11);
+if(count($question_info) == 0) error(11);
 
 // Get question info
 $user_id = $question_info["user_id"];
@@ -23,7 +24,6 @@ $date = $question_info["date"];
 $visible = $question_info["visible"];
 
 // Get answers
-$is_operator = $_SESSION["studyq_is_operator"];
 $sql = "select * from Answers as A inner join Users as U on A.user_id=U.user_id where question_id=\"$question_id\" and (A.visible=1 or $is_operator=1) order by date asc;";
 $answers = $dbh->query($sql)->fetchAll();
 
