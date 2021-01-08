@@ -12,6 +12,7 @@ $pw_conf = $_POST["password_conf"];
 // Check
 if(!($userid && $nickname && $pw && $pw_conf)) error(1);
 if($pw != $pw_conf) error(2);
+if(strlen($userid) > 16 || strlen($nickname) > 32) error(10);
 
 // Regist user
 if($_POST["regist"]) {

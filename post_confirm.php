@@ -12,6 +12,7 @@ $tweet = htmlspecialchars($_POST["tweet"]);
 
 // Check
 if(!($title && $body)) error(1);
+if(strlen($body) > 512 || strlen($tweet) > 128) error(10);
 
 // Post question
 if($_POST["post"]) {

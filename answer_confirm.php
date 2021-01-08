@@ -10,6 +10,7 @@ list($mylink, $hdmsg) = getUserMsg();
 $question_id = $_POST["question_id"];
 $body = htmlspecialchars($_POST["body"]);
 if(!($question_id && $body)) error(1);
+if(strlen($body) > 512) error(10);
 
 // Post answer
 if($_POST["post"]) {
