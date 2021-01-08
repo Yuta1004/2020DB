@@ -8,6 +8,11 @@ body {
     background: #FFE4B5;
 }
 
+header {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
 .center {
     width: auto;
     text-align: center;
