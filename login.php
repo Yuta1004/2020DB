@@ -13,13 +13,14 @@ if($_POST["login"]) {
     if(!($userid && $pw)) error(1);
 
     // User valid process
-    $sql = "select nickname, hashed_pw from Users where user_id=\"$userid\";";
+    $sql = "select nickname, hashed_pw, is_operator from Users where user_id=\"$userid\";";
     $userinfo = getDBHandler()->query($sql)->fetch();
     if(!$userinfo || $userinfo["hashed_pw"] != crypt($pw, "1204chino4021")) {
         error(4);
     }
     $_SESSION["studyq_userid"] = $userid;
     $_SESSION["studyq_nickname"] = $userinfo["nickname"];
+    $_SESSION["studyq_is_operator"] = $userinfo["is_operator"];
     message("ログインに成功しました");
 }
 ?>

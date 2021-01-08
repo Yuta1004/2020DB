@@ -26,6 +26,7 @@ if($_POST["regist"]) {
     }
     $_SESSION["studyq_userid"] = $userid;
     $_SESSION["studyq_nickname"] = $nickname;
+    $_SESSION["studyq_is_operator"] = 0;
     message("ユーザ登録が正常に完了しました");
 }
 ?>
