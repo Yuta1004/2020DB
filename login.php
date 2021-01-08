@@ -12,18 +12,8 @@ if($_POST["login"]) {
     // Check
     if(!($userid && $pw)) error(1);
 
-    // Create MySQL Connection
-    try {
-        $dbh = new PDO("mysql:dbhost=localhost;dbname=db2020;unix_socket=/tmp/mysql.sock", "db2020", "db2020");
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbh->query("set names utf8");
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        exit();
-    }
-
     // User valid process
-    $userinfo = $dbh->query("select nickname, hashed_pw from Users where user_id=\"$userid\";")->fetch();
+    $userinfo = getDBHandler()->query("select nickname, hashed_pw from Users where user_id=\"$userid\";")->fetch();
     if(!$userinfo || $userinfo["hashed_pw"] != crypt($pw, "1204chino4021")) {
         error(4);
     }

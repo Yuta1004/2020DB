@@ -11,6 +11,19 @@ function getUserMsg() {
     return array($mylink, $hdmsg);
 }
 
+function getDBHandler() {
+    // Create MySQL Connection
+    try {
+        $dbh = new PDO("mysql:dbhost=localhost;dbname=db2020;unix_socket=/tmp/mysql.sock", "db2020", "db2020");
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dbh->query("set names utf8");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        exit();
+    }
+    return $dbh;
+}
+
 function requireLogin() {
     if(!$_SESSION["studyq_nickname"]) error(5);
 }

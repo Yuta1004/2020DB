@@ -15,20 +15,10 @@ if($pw != $pw_conf) error(2);
 
 // Regist user
 if($_POST["regist"]) {
-    // Create MySQL Connection
-    try {
-        $dbh = new PDO("mysql:dbhost=localhost;dbname=db2020;unix_socket=/tmp/mysql.sock", "db2020", "db2020");
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbh->query("set names utf8");
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        exit();
-    }
-
     // Crypt -> Insert to DB
     $hashed_pw = crypt($pw, "1204chino4021");
     try {
-        $result = $dbh->query("insert into Users values(\"$userid\", \"$nickname\", \"$hashed_pw\");");
+        $result = getDBHandler()->query("insert into Users values(\"$userid\", \"$nickname\", \"$hashed_pw\");");
     } catch (PDOException $e) {
         error(3);
     }

@@ -15,20 +15,9 @@ if(!($title && $body)) error(1);
 
 // Post question
 if($_POST["post"]) {
-    // Create MySQL Connection
-    try {
-        $dbh = new PDO("mysql:dbhost=localhost;dbname=db2020;unix_socket=/tmp/mysql.sock", "db2020", "db2020");
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbh->query("set names utf8");
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        exit();
-    }
-
-    // Insert to DB
     try {
         $date = date("Y/m/d H:i:s");
-        $result = $dbh->query("insert into Questions (user_id, body, tweet, date) values (\"$title\", \"$body\", \"$tweet\", \"$date\");");
+        $result = getDBHandler()->query("insert into Questions (user_id, body, tweet, date) values (\"$title\", \"$body\", \"$tweet\", \"$date\");");
     } catch (PDOException $e) {
         error(0);
     }

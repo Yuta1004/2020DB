@@ -14,21 +14,11 @@ if($_POST["change"]) {
     if(!($userid && $nickname && $pw && $pw_conf)) error(1);
     if($pw != $pw_conf) error(2);
 
-    // Create MySQL Connection
-    try {
-        $dbh = new PDO("mysql:dbhost=localhost;dbname=db2020;unix_socket=/tmp/mysql.sock", "db2020", "db2020");
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $dbh->query("set names utf8");
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        exit();
-    }
-
     // Update user info
     try {
         $old_userid = $_SESSION["studyq_userid"];
         $hashed_pw = crypt($pw, "1204chino4021");
-        $dbh->query("update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$old_userid\";");
+        getDBHandler()->query("update Users set user_id=\"$userid\", nickname=\"$nickname\", hashed_pw=\"$hashed_pw\" where user_id=\"$old_userid\";");
         $_SESSION["studyq_userid"] = $userid;
         $_SESSION["studyq_nickname"] = $nickname;
     } catch (PDOException $e) {
