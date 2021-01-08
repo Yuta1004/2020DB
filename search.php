@@ -3,6 +3,21 @@ session_start();
 
 require "util_func.php";
 list($mylink, $hdmsg) = getUserMsg();
+
+$results = array();
+$genre = $_GET["genre"];
+$target = $_GET["target"];
+$keyword = htmlspecialchars($_GET["keyword"]);
+if($genre && $target && $keyword) {
+    // Check
+    if(!(in_array($genre, array("Questions", "Answers")) && in_array($target, array("body", "user_id")))) {
+        error(0);
+    }
+
+    // Get results
+    $sql = "select * from $genre where $target like '%$keyword%';";
+    $results = getDBHandler()->query($sql)->fetchAll();
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,24 +36,36 @@ list($mylink, $hdmsg) = getUserMsg();
     <h2 class="minititle">検索</h2>
     <hr>
     <form class="center" style="width: 30%;" method="GET" action="#">
-        <input type="radio" name="genre" value="question" checked>問題
-        <input type="radio" name="genre" value="answer" >回答<br>
-        <input type="radio" name="target" value="body" checked>投稿本文
-        <input type="radio" name="target" value="userid">ユーザID<br>
-        <input type="text" name="keyword" size="40">
+        <input type="radio" name="genre" value="Questions" <?php if($genre == "Questions") echo "checked"; ?>>問題
+        <input type="radio" name="genre" value="Answers"   <?php if($genre == "Answers") echo "checked"; ?>>回答<br>
+        <input type="radio" name="target" value="body"     <?php if($target == "body") echo "checked"; ?>>投稿本文
+        <input type="radio" name="target" value="user_id"  <?php if($target == "user_id") echo "checked"; ?>>ユーザID<br>
+        <input type="text" name="keyword" size="40" value=<?php echo $keyword?>>
         <input type="submit" value="検索">
     </form>
     <hr>
-    <p class="center"><b>0</b>件の投稿がヒットしました</p>
+    <p class="center"><b><? echo count($results); ?></b>件の投稿がヒットしました</p>
     <div class="center" style="width: 70%;">
-        <div class="listelement">
-            <b>タイトル</b><br>
-            投稿者名: あああ<br>
-            投稿日時: 1970/01/01 00:00:00<br>
-            HELP!: <i>9999</i><br><br>
-            <u>内容</u><br>
-            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ…
-        </div>
+        <?php
+            $idx = 1;
+            foreach($results as $result) {
+                $question_id = $result["question_id"];
+                $title = $result["title"];
+                $nickname = $result["nickname"];
+                $date = $result["date"];
+                $body = $result["body"];
+                $count = $result["count"];
+                echo "<div class='listelement' style='width:85%; margin-left: auto; margin-right: auto;'>\n";
+                echo "<b>No.$idx</b><br>\n";
+                echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                echo "投稿者名: $nickname<br>\n";
+                echo "投稿日時: $date<br>\n";
+                echo "HELP!: <i>$count</i><br><br>\n";
+                echo "<u>内容</u><br> <pre style='font-size:18px;'>$body</pre>\n";
+                echo "</div>";
+                ++ $idx;
+            }
+        ?>
     </div>
 </body>
 
