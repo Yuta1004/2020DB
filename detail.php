@@ -19,6 +19,10 @@ $body = $question_info["body"];
 $tweet = $question_info["tweet"];
 $date = $question_info["date"];
 $help = 0;
+
+// Get answers
+$sql = "select * from Answers as A inner join Users as U on A.user_id=U.user_id where question_id=\"$question_id\" order by date asc;";
+$answers = $dbh->query($sql)->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -48,15 +52,23 @@ $help = 0;
         </div>
     </div>
     <hr>
-    <p class="center"><b>0</b>件の回答があります</p>
+    <p class="center"><b><?php echo count($answers); ?></b>件の回答があります</p>
     <div class="center" style="width: 70%;">
-        <div class="listelement">
-            <b>No.0</b><br>
-            回答者名: あああ<br>
-            回答日時: 1970/01/01 00:00:00<br><br>
-            <u>回答内容</u><br>
-            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ…
-        </div>
+        <?php
+            $idx = 1;
+            foreach($answers as $answer) {
+                $nickname = $answer["nickname"];
+                $date = $answer["date"];
+                $body = $answer["body"];
+                echo "<div class=\"listelement\">";
+                echo "<b>No.$idx</b><br>\n";
+                echo "回答者名: $nickname<br>\n";
+                echo "回答日時: $date<br><br>\n";
+                echo "<u>回答内容</u><br> <pre style='font-size:15px;'>$body</pre>\n";
+                echo "</div>\n";
+                ++ $idx;
+            }
+        ?>
     </div>
     <hr>
     <form class="center" style="width: 45%;" method="POST" action="answer_confirm.php">
