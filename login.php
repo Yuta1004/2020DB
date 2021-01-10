@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!$_SESSION["studyq_is_operator"])
+    $_SESSION["studyq_is_operator"] = 0;
 
 require "util_func.php";
 requireNotLogin();
