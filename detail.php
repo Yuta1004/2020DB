@@ -79,11 +79,13 @@ $help = $dbh->query($sql)->fetch()["count"];
                 $nickname = $answer["nickname"];
                 $date = $answer["date"];
                 $body = $answer["body"];
+                $visible = $answer["visible"] ? "公開" : "非公開";
                 echo "<div class=\"listelement\">";
                 echo "<b>No.$idx</b><br>\n";
                 echo "回答者名: $nickname<br>\n";
                 echo "回答日時: $date<br><br>\n";
                 echo "<u>回答内容</u><br> <pre style='font-size:15px;'>$body</pre>\n";
+                echo "<p><b>公開設定</b>: $visible</p>\n";
                 if($_SESSION["studyq_is_operator"]) {
                     echo "<p><a href='setvisible_confirm.php?genre=Answers&question_id=$question_id&user_id=$user_id'>投稿管理を行う</a></p>";
                 }
