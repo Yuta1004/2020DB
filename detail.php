@@ -16,15 +16,6 @@ $question_info = $dbh->query($sql)->fetch();
 if(!$question_info) error(8);
 if(count($question_info) == 0) error(11);
 
-// Get question info
-$user_id = $question_info["user_id"];
-$nickname = $question_info["nickname"];
-$title = $question_info["title"];
-$body = $question_info["body"];
-$tweet = $question_info["tweet"];
-$date = $question_info["date"];
-$visible = $question_info["visible"];
-
 // Get answers
 $sql = "select * from Answers as A inner join Users as U on A.user_id=U.user_id where question_id=\"$question_id\" and (A.visible=1 or $is_operator=1) order by date asc;";
 $answers = $dbh->query($sql)->fetchAll();
@@ -51,11 +42,12 @@ $help = $dbh->query($sql)->fetch()["count"];
     <div class="center" style="width: 60%; text-align: left;">
         <div class="listelement">
             <p><b>ID</b>: <?php echo $question_id; ?></p>
-            <p><b>投稿者名</b>: <?php echo $nickname; ?></p>
-            <p><b>投稿日時</b>: <?php echo $date; ?></p>
-            <p><b>問題</b></p> <pre style="font-size: 20px;"><?php echo $body; ?></pre><br>
-            <p><b>ひとこと</b>: <?php echo $tweet; ?></p>
-            <p><b>公開設定</b>: <?php echo ($visible ? "公開" : "非公開"); ?></p>
+            <p><b>投稿タイトル: </b> <?php echo $question_info["title"]?> </p>
+            <p><b>投稿者名</b>: <?php echo $question_info["nickname"]; ?></p>
+            <p><b>投稿日時</b>: <?php echo $question_info["date"]; ?></p>
+            <p><b>問題</b></p> <pre style="font-size: 20px;"><?php echo $question_info["body"]; ?></pre><br>
+            <p><b>ひとこと</b>: <?php echo $question_info["tweet"]; ?></p>
+            <p><b>公開設定</b>: <?php echo ($question_info["visible"] ? "公開" : "非公開"); ?></p>
             <p>
                 <b>HELP!</b>: <i><?php echo $help; ?></i>
                 <form style="width: 0px; border: 0px; margin: 0px;" method="POST" action="valuation_confirm.php">
