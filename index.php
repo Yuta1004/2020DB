@@ -63,7 +63,7 @@ $pickup_questions = $dbh->query($sql)->fetchAll();
             </div>
         </li>
         <li class="menubar">
-            <div class="center" style="background-color:gray; width: 2px; height:1500px;"></div>
+            <div class="center" style="background-color:gray; width: 2px; height:2000px;"></div>
         </li>
         <li class="menubar" style="width: 50%; margin: 0px 10px 0px 10px;">
             <div style="width: 100%;">
