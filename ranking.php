@@ -9,11 +9,11 @@ list($mylink, $hdmsg) = getUserMsg();
 // Get raning order by Valuations
 $is_operator = $_SESSION["studyq_is_operator"];
 $dbh = getDBHandler();
-$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(V.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Valuations as V on Q.question_id=V.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, Q.date desc limit 5;";
+$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(V.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Valuations as V on Q.question_id=V.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, Q.date desc limit 10;";
 $v_ranking_questions = $dbh->query($sql)->fetchAll();
 
 // Get ranking order by Answer nums;
-$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(A.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Answers as A on Q.question_id=A.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, date desc limit 5;";
+$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(A.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Answers as A on Q.question_id=A.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, date desc limit 10;";
 $a_ranking_questions = $dbh->query($sql)->fetchAll();
 ?>
 
@@ -60,7 +60,7 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
             </div>
         </li>
         <li class="menubar">
-            <div class="center" style="background-color:gray; width: 2px; height:1500px;"></div>
+            <div class="center" style="background-color:gray; width: 2px; height:4500px;"></div>
         </li>
         <li class="menubar" style="width: 50%; margin: 0px 10px 0px 10px;">
             <div style="width: 100%;">
