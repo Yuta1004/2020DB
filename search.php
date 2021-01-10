@@ -53,7 +53,6 @@ if($genre && $target && $keyword) {
     <p class="center"><b><? echo count($results); ?></b>件の投稿がヒットしました</p>
     <div class="center" style="width: 70%;">
         <?php
-            $idx = 1;
             foreach($results as $result) {
                 $question_id = $result["question_id"];
                 $title = $result["title"] == "" ? "この投稿を見る" : $result["title"];
@@ -62,14 +61,13 @@ if($genre && $target && $keyword) {
                 $body = adjustmentStr($result["body"], 80);
                 $count = $result["count"];
                 echo "<div class='listelement' style='width:85%; margin-left: auto; margin-right: auto;'>\n";
-                echo "<b>No.$idx</b><br>\n";
+                echo "<b>ID: $question_id</b><br>\n";
                 echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
                 echo "投稿者名: $nickname<br>\n";
                 echo "投稿日時: $date<br>\n";
                 echo "HELP!: <i>$count</i><br><br>\n";
                 echo "<u>内容</u><br> <pre style='font-size:18px;'>$body</pre>\n";
                 echo "</div>";
-                ++ $idx;
             }
         ?>
     </div>

@@ -50,6 +50,7 @@ $help = $dbh->query($sql)->fetch()["count"];
     <h2 class="minititle">投稿詳細</h2>
     <div class="center" style="width: 60%; text-align: left;">
         <div class="listelement">
+            <p><b>ID</b>: <?php echo $question_id; ?></p>
             <p><b>投稿者名</b>: <?php echo $nickname; ?></p>
             <p><b>投稿日時</b>: <?php echo $date; ?></p>
             <p><b>問題</b></p> <pre style="font-size: 20px;"><?php echo $body; ?></pre><br>

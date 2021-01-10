@@ -37,6 +37,7 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
             <div style="width: 100%;">
                 <h2 class="minititle"><i>難易度順</i></h2>
                 <?php
+                    $rank = 1;
                     foreach($v_ranking_questions as $question) {
                         $question_id = $question["question_id"];
                         $title = $question["title"];
@@ -46,11 +47,14 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
                         $count = $question["count"];
                         echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto;'>\n";
                         echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                        echo "<b>RANK: <i>$rank</i></b><br>\n";
+                        echo "ID: $question_id<br>\n";
                         echo "投稿者名: $nickname<br>\n";
                         echo "投稿日時: $date<br>\n";
                         echo "HELP!: <i>$count</i><br><br>\n";
                         echo "<u>内容</u><br> <pre style='font-size:18px;'>$body</pre>\n";
                         echo "</div>";
+                        ++ $rank;
                     }
                 ?>
             </div>
@@ -62,6 +66,7 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
             <div style="width: 100%;">
                 <h2 class="minititle"><i>回答数</i></h2>
                 <?php
+                    $rank = 1;
                     foreach($a_ranking_questions as $question) {
                         $question_id = $question["question_id"];
                         $title = $question["title"];
@@ -71,11 +76,14 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
                         $count = $question["count"];
                         echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto;'>\n";
                         echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                        echo "<b>RANK: <i>$rank</i></b><br>\n";
+                        echo "ID: $question_id<br>\n";
                         echo "投稿者名: $nickname<br>\n";
                         echo "投稿日時: $date<br>\n";
                         echo "回答数: <i>$count</i><br><br>\n";
                         echo "<u>内容</u><br> <pre style='font-size:18px;'>$body</pre>\n";
                         echo "</div>";
+                        ++ $rank;
                     }
                 ?>
             </div>

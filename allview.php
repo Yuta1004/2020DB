@@ -52,7 +52,7 @@ if(count($questions) == 0) {
                 $body = adjustmentStr($question["body"], 80);
                 $count = $question["count"];
                 echo "<div class='listelement' style='width:85%; margin-left: auto; margin-right: auto;'>\n";
-                echo "<b>No.$question_id</b><br>\n";
+                echo "<b>ID: $question_id</b><br>\n";
                 echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
                 echo "投稿者名: $nickname<br>\n";
                 echo "投稿日時: $date<br>\n";
