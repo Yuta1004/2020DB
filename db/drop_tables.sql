@@ -1,5 +1,5 @@
 /* Drop tables */
-drop table Answers;
 drop table Valuations;
-drop table Users;
+drop table Answers;
 drop table Questions;
+drop table Users;
