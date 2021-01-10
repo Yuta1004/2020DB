@@ -17,10 +17,10 @@ if($_POST["post"]) {
     try {
         $date = date("Y/m/d H:i:s", strtotime("+9hours"));
         $userid = $_SESSION["studyq_userid"];
-        $sql = "insert into Answers values (\"$question_id\", \"$userid\", \"$body\", \"$date\");";
+        $sql = "insert into Answers values (\"$question_id\", \"$userid\", \"$body\", \"$date\", \"1\");";
         $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
-        error(0);
+        error(0, "/");
     }
     message("正常に投稿処理が完了しました");
 }

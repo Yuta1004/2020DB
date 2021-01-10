@@ -20,6 +20,16 @@ header {
     margin-right: auto;
 }
 
+.ranking_back {
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 250px;
+    opacity: 10%;
+}
+
 h1.title {
     width: 250px;
     height: 100px;

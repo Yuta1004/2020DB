@@ -8,7 +8,7 @@ list($mylink, $hdmsg) = getUserMsg();
 
 // Check
 $question_id = $_POST["question_id"];
-if(!$question_id) error(0);
+if(!$question_id) error(0, "/");
 
 // Post answer
 if($_POST["help"]) {
@@ -17,7 +17,7 @@ if($_POST["help"]) {
         $sql = "insert into Valuations values (\"$question_id\", \"$userid\");";
         $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
-        error(9);
+        error(9, "/");
     }
     message("HELP!しました");
 }

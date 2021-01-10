@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!$_SESSION["studyq_is_operator"])
+    $_SESSION["studyq_is_operator"] = 0;
 
 require "util_func.php";
 list($mylink, $hdmsg) = getUserMsg();
@@ -13,7 +15,7 @@ if(!$page || $page < 1) {
 // Get all questions
 $is_operator = $_SESSION["studyq_is_operator"];
 $offset = ($page-1) * 10;
-$sql = "select * from Questions where visible=1 or $is_operator=1 order by date desc limit 10 offset $offset;";
+$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(V.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Valuations as V on Q.question_id=V.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by Q.date asc limit 10 offset $offset;";
 $questions = getDBHandler()->query($sql)->fetchAll();
 
 // Redirect
@@ -42,9 +44,7 @@ if(count($questions) == 0) {
     <p class="center"><b>ページ <? echo $page; ?></b></p>
     <div class="center" style="width: 70%;">
         <?php
-            $idx = 1;
             foreach($questions as $question) {
-                $no = ($page-1)*10 + $idx;
                 $question_id = $question["question_id"];
                 $title = $question["title"];
                 $nickname = $question["nickname"];
@@ -52,7 +52,7 @@ if(count($questions) == 0) {
                 $body = adjustmentStr($question["body"], 80);
                 $count = $question["count"];
                 echo "<div class='listelement' style='width:85%; margin-left: auto; margin-right: auto;'>\n";
-                echo "<b>No.$no</b><br>\n";
+                echo "<b>ID: $question_id</b><br>\n";
                 echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
                 echo "投稿者名: $nickname<br>\n";
                 echo "投稿日時: $date<br>\n";

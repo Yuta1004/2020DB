@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!$_SESSION["studyq_is_operator"])
+    $_SESSION["studyq_is_operator"] = 0;
 
 require "util_func.php";
 list($mylink, $hdmsg) = getUserMsg();
@@ -50,6 +52,7 @@ $pickup_questions = $dbh->query($sql)->fetchAll();
                         $count = $question["count"];
                         echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto;'>\n";
                         echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                        echo "ID: $question_id<br>\n";
                         echo "投稿者名: $nickname<br>\n";
                         echo "投稿日時: $date<br>\n";
                         echo "HELP!: <i>$count</i><br><br>\n";
@@ -60,7 +63,7 @@ $pickup_questions = $dbh->query($sql)->fetchAll();
             </div>
         </li>
         <li class="menubar">
-            <div class="center" style="background-color:gray; width: 2px; height:1500px;"></div>
+            <div class="center" style="background-color:gray; width: 2px; height:2000px;"></div>
         </li>
         <li class="menubar" style="width: 50%; margin: 0px 10px 0px 10px;">
             <div style="width: 100%;">
@@ -75,6 +78,7 @@ $pickup_questions = $dbh->query($sql)->fetchAll();
                         $count = $question["count"];
                         echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto;'>\n";
                         echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                        echo "ID: $question_id<br>\n";
                         echo "投稿者名: $nickname<br>\n";
                         echo "投稿日時: $date<br>\n";
                         echo "HELP!: <i>$count</i><br><br>\n";

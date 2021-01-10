@@ -11,8 +11,8 @@ $user_id = $_GET["user_id"];
 $question_id = $_GET["question_id"];
 
 // Check
-if(!($user_id && $question_id && $genre)) error(0);
-if(!in_array($genre, array("Questions", "Answers"))) error(0);
+if(!($user_id && $question_id && $genre)) error(0, "/");
+if(!in_array($genre, array("Questions", "Answers"))) error(0, "/");
 if(!$_SESSION["studyq_is_operator"]) error(11);
 
 // Post question
@@ -22,7 +22,7 @@ if($_POST["setvisible"]) {
         $sql = "update $genre set visible=$visible where question_id=\"$question_id\" and user_id=\"$user_id\";";
         $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
-        error(0);
+        error(0, "/");
     }
     message("正常に更新処理が完了しました");
 }

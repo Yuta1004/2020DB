@@ -32,8 +32,12 @@ function requireNotLogin() {
     if($_SESSION["studyq_nickname"]) error(6);
 }
 
-function error($errno) {
-    header("Location: error.php?errno=$errno", true, 301);
+function error($errno, $jumpto="") {
+    if($jumpto == "") {
+        header("Location: error.php?errno=$errno", true, 301);
+    } else {
+        header("Location: error.php?errno=$errno&jumpto=$jumpto", true, 301);
+    }
     exit();
 }
 

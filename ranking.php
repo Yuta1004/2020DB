@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!$_SESSION["studyq_is_operator"])
+    $_SESSION["studyq_is_operator"] = 0;
 
 require "util_func.php";
 list($mylink, $hdmsg) = getUserMsg();
@@ -7,11 +9,11 @@ list($mylink, $hdmsg) = getUserMsg();
 // Get raning order by Valuations
 $is_operator = $_SESSION["studyq_is_operator"];
 $dbh = getDBHandler();
-$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(V.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Valuations as V on Q.question_id=V.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, Q.date desc limit 5;";
+$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(V.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Valuations as V on Q.question_id=V.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, Q.date desc limit 10;";
 $v_ranking_questions = $dbh->query($sql)->fetchAll();
 
 // Get ranking order by Answer nums;
-$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(A.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Answers as A on Q.question_id=A.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, date desc limit 5;";
+$sql = "select U.nickname as nickname, Q.question_id as question_id, Q.title as title, Q.date as date, Q.body as body, count(A.user_id) as count from Questions as Q inner join Users as U on Q.user_id=U.user_id left join Answers as A on Q.question_id=A.question_id where Q.visible=1 or $is_operator=1 group by Q.question_id order by count desc, date desc limit 10;";
 $a_ranking_questions = $dbh->query($sql)->fetchAll();
 ?>
 
@@ -35,6 +37,7 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
             <div style="width: 100%;">
                 <h2 class="minititle"><i>難易度順</i></h2>
                 <?php
+                    $rank = 1;
                     foreach($v_ranking_questions as $question) {
                         $question_id = $question["question_id"];
                         $title = $question["title"];
@@ -42,24 +45,28 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
                         $date = $question["date"];
                         $body = adjustmentStr($question["body"], 40);
                         $count = $question["count"];
-                        echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto;'>\n";
+                        echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto; position: relative;'>\n";
                         echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                        echo "<p class='ranking_back'>$rank</p>\n";
+                        echo "ID: $question_id<br>\n";
                         echo "投稿者名: $nickname<br>\n";
                         echo "投稿日時: $date<br>\n";
                         echo "HELP!: <i>$count</i><br><br>\n";
                         echo "<u>内容</u><br> <pre style='font-size:18px;'>$body</pre>\n";
                         echo "</div>";
+                        ++ $rank;
                     }
                 ?>
             </div>
         </li>
         <li class="menubar">
-            <div class="center" style="background-color:gray; width: 2px; height:1500px;"></div>
+            <div class="center" style="background-color:gray; width: 2px; height:4500px;"></div>
         </li>
         <li class="menubar" style="width: 50%; margin: 0px 10px 0px 10px;">
             <div style="width: 100%;">
                 <h2 class="minititle"><i>回答数</i></h2>
                 <?php
+                    $rank = 1;
                     foreach($a_ranking_questions as $question) {
                         $question_id = $question["question_id"];
                         $title = $question["title"];
@@ -67,13 +74,16 @@ $a_ranking_questions = $dbh->query($sql)->fetchAll();
                         $date = $question["date"];
                         $body = adjustmentStr($question["body"], 40);
                         $count = $question["count"];
-                        echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto;'>\n";
+                        echo "<div class='listelement' style='width:70%; margin-left: auto; margin-right: auto; position: relative;'>\n";
                         echo "<h3><b><u><a href='detail.php?id=$question_id'>$title</a></u></b></h3>\n";
+                        echo "<p class='ranking_back'>$rank</p>\n";
+                        echo "ID: $question_id<br>\n";
                         echo "投稿者名: $nickname<br>\n";
                         echo "投稿日時: $date<br>\n";
                         echo "回答数: <i>$count</i><br><br>\n";
                         echo "<u>内容</u><br> <pre style='font-size:18px;'>$body</pre>\n";
                         echo "</div>";
+                        ++ $rank;
                     }
                 ?>
             </div>
