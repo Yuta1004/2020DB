@@ -13,7 +13,7 @@ $keyword = htmlspecialchars($_GET["keyword"]);
 if($genre && $target && $keyword) {
     // Check
     if(!(in_array($genre, array("Questions", "Answers")) && in_array($target, array("body", "user_id")))) {
-        error(0);
+        error(0, "/");
     }
 
     // Get results

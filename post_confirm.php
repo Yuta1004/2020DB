@@ -22,7 +22,7 @@ if($_POST["post"]) {
         $sql = "insert into Questions (user_id, title, body, tweet, date) values (\"$userid\", \"$title\", \"$body\", \"$tweet\", \"$date\");";
         $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
-        error(0);
+        error(0, "/");
     }
     message("正常に投稿処理が完了しました");
 }

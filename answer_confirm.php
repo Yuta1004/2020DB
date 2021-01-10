@@ -20,7 +20,7 @@ if($_POST["post"]) {
         $sql = "insert into Answers values (\"$question_id\", \"$userid\", \"$body\", \"$date\", \"1\");";
         $result = getDBHandler()->query($sql);
     } catch (PDOException $e) {
-        error(0);
+        error(0, "/");
     }
     message("正常に投稿処理が完了しました");
 }
